@@ -1,0 +1,29 @@
+{
+
+        "aws": {
+                "region": "us-east-1"
+        },
+        "bucket":{
+                "name": "terraform-aws-eks-guillermo-garcia",
+                "tfstate": "terraform.tfstate"        
+        },
+        "eks": {
+                "name": "eks-cluster",
+                "instance_type": ["t3.small"],
+                "version": "1.31",
+                "nodegroup_name": "private-nodes",
+                "scaling_desired_size": 1,
+                "scaling_max_size": 2,
+                "scaling_min_size": 1
+        },
+        "network": {
+                "cidr_block_vpc": "10.0.0.0/16",
+                "cidr-block-subnets":{
+                        "public-subnet-1": "10.0.1.0/24",
+                        "public-subnet-2": "10.0.2.0/24",
+                        "private-subnet-1": "10.0.3.0/24",
+                        "private-subnet-2": "10.0.4.0/24"
+                },
+                "AZs": ["us-east-1a", "us-east-1b"]
+        }
+}
