@@ -63,11 +63,11 @@ resource "aws_iam_role_policy_attachment" "nodes-ec2-policy" {
 resource "aws_iam_policy" "eks-cluster-autoscaler-policy" {
   name = "eks-cluster-autoscaler-policy"
   policy = jsonencode({
-		"Version": "2012-10-17",
+    "Version" : "2012-10-17",
     Statement = [{
-      "Effect": "Allow",
+      "Effect" : "Allow",
       # Recommended by cluster autoscaler
-      "Action": [
+      "Action" : [
         "autoscaling:DescribeAutoScalingGroups",
         "autoscaling:DescribeAutoScalingInstances",
         "autoscaling:DescribeLaunchConfigurations",
@@ -78,25 +78,25 @@ resource "aws_iam_policy" "eks-cluster-autoscaler-policy" {
         "ec2:GetInstanceTypesFromInstanceRequirements",
         "eks:DescribeNodegroup"
       ],
-      "Resource": ["*"]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "autoscaling:SetDesiredCapacity",
-        "autoscaling:TerminateInstanceInAutoScalingGroup"
-      ],
-      "Resource": ["*"]
-      # Minimal to avoid autoscaler issues
-      #      Action = [
-      #  "autoscaling:DescribeAutoScalingGroups",
-      #  "autoscaling:DescribeAutoScalingInstances",
-      #  "autoscaling:DescribeLaunchConfigurations",
-      #  "autoscaling:DescribeScalingActivities",
-      #  "autoscaling:SetDesiredCapacity",
-      #  "autoscaling:TerminateInstanceInAutoScalingGroup",
-      #  "eks:DescribeNodegroup"
-      #      ]
+      "Resource" : ["*"]
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "autoscaling:SetDesiredCapacity",
+          "autoscaling:TerminateInstanceInAutoScalingGroup"
+        ],
+        "Resource" : ["*"]
+        # Minimal to avoid autoscaler issues
+        #      Action = [
+        #  "autoscaling:DescribeAutoScalingGroups",
+        #  "autoscaling:DescribeAutoScalingInstances",
+        #  "autoscaling:DescribeLaunchConfigurations",
+        #  "autoscaling:DescribeScalingActivities",
+        #  "autoscaling:SetDesiredCapacity",
+        #  "autoscaling:TerminateInstanceInAutoScalingGroup",
+        #  "eks:DescribeNodegroup"
+        #      ]
     }]
   })
 }

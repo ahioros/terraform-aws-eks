@@ -1,10 +1,10 @@
 variable "config_key" {
-  type = string
+  type        = string
   description = "Config File"
 }
 
 variable "eks-cluster-name" {
-  type = string
+  type        = string
   description = "EKS Cluster Name"
-  default = "eks-cluster-default"
+  default     = "eks-cluster-default"
 }

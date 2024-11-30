@@ -17,7 +17,7 @@ resource "aws_internet_gateway" "eks-igw" {
 # Create private subnet us-east-1a
 resource "aws_subnet" "eks-private-subnet-1" {
   vpc_id            = aws_vpc.eks-vpc.id
-  cidr_block = local.config.network.cidr-block-subnets["private-subnet-1"]
+  cidr_block        = local.config.network.cidr-block-subnets["private-subnet-1"]
   availability_zone = local.config.network.AZs[0]
   tags = {
     Name                              = "EKS-Private-Subnet"
@@ -28,7 +28,7 @@ resource "aws_subnet" "eks-private-subnet-1" {
 # Create private subnet us-east-1b
 resource "aws_subnet" "eks-private-subnet-2" {
   vpc_id            = aws_vpc.eks-vpc.id
-  cidr_block = local.config.network.cidr-block-subnets["private-subnet-2"]
+  cidr_block        = local.config.network.cidr-block-subnets["private-subnet-2"]
   availability_zone = local.config.network.AZs[1]
   tags = {
     Name                              = "EKS-Private-Subnet"
@@ -39,7 +39,7 @@ resource "aws_subnet" "eks-private-subnet-2" {
 # Create public subnet us-east-1a
 resource "aws_subnet" "eks-public-subnet-1" {
   vpc_id                  = aws_vpc.eks-vpc.id
-  cidr_block = local.config.network.cidr-block-subnets["public-subnet-1"]
+  cidr_block              = local.config.network.cidr-block-subnets["public-subnet-1"]
   availability_zone       = local.config.network.AZs[0]
   map_public_ip_on_launch = true
   tags = {
@@ -51,7 +51,7 @@ resource "aws_subnet" "eks-public-subnet-1" {
 # Create public subnet us-east-1b
 resource "aws_subnet" "eks-public-subnet-2" {
   vpc_id                  = aws_vpc.eks-vpc.id
-  cidr_block = local.config.network.cidr-block-subnets["public-subnet-2"]
+  cidr_block              = local.config.network.cidr-block-subnets["public-subnet-2"]
   availability_zone       = local.config.network.AZs[1]
   map_public_ip_on_launch = true
   tags = {

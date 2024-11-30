@@ -15,4 +15,16 @@ Configure the following in the `config.json` file:
     terraform apply -var="config_key=config.json"
 ```
 
+## Test kubernetes cluster
+
+```bash
+kubectl --kubeconfig ./template/kubeconfig.yaml get nodes
+```
+
+## Destroy
+
+```bash
+    terraform destroy -var="config_key=config.json"
+```
+
 Enjoy!
