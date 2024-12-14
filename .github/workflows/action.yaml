@@ -44,10 +44,10 @@ jobs:
           terraform ${{ github.event.inputs.action }} -var="config_key=config.json" -auto-approve
 
       - name: kubectl setup
-        uses: tale/kubectl-action@v1
+        uses: teknatha136/actions-kubectl@main
       - run: |
           if [[ ${{ github.event.inputs.action }} == 'apply' ]]; then
-            kubectl --kubeconfig ./template/kubeconfig.yaml get all -A
+            ./kubebin/kubectl --kubeconfig ./template/kubeconfig.yaml get all -A
           else
             echo "Skipping kubectl test"
           fi
