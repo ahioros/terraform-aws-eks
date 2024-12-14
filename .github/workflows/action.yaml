@@ -3,11 +3,11 @@ on:
   workflow_dispatch:
     inputs:
       action:
-      required: true
-      default: 'apply'
-      description: 'Select the action'
-      type: choice
-      options:
+        required: true
+        default: 'apply'
+        description: 'Select the action'
+        type: choice
+        options:
         - 'apply'
         - 'destroy'
   push:
