@@ -10,7 +10,6 @@ on:
       options:
         - 'apply'
         - 'destroy'
-        - ''
   push:
     branches:
       - master
