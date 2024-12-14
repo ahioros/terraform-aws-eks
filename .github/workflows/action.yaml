@@ -43,11 +43,13 @@ jobs:
           terraform plan -var="config_key=config.json"
           terraform ${{ github.event.inputs.action }} -var="config_key=config.json" -auto-approve
 
-      - name: kubectl test
+      - name: kubectl setup
         uses: marcofranssen/setup-kubectl@v0.3.0
         id: kubectl
         with:
           kubectl-version: latest
+
+      - name: kubectl test
         run: |
           if [[ ${{ github.event.inputs.action }} == 'apply' ]]; then
             kubectl --kubeconfig ./template/kubeconfig.yaml get all -A
