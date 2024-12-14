@@ -1,6 +1,16 @@
 name: workflow-aws-terraform
 on:
   workflow_dispatch:
+    inputs:
+      action:
+      required: true
+      default: ''
+      description: 'Select the action'
+      type: choice
+      options:
+        - 'apply'
+        - 'destroy'
+        - ''
   push:
     branches:
       - master
@@ -28,7 +38,20 @@ jobs:
         with:
           version: 1.9.8
 
-      - name: Terraform Init
-        id: init
+      - name: Terraform apply
         run: |
           terraform init
+          terraform plan -var="config_key=config.json"
+          terraform ${{ github.event.inputs.action }} -var="config_key=config.json" -auto-approve
+
+      - name: kubectl test
+        uses: marcofranssen/setup-kubectl@v0.3.0
+        id: kubectl
+        with:
+          kubectl-version: latest
+        run: |
+          if [[ ${{ github.event.inputs.action }} == 'apply' ]]; then
+            kubectl --kubeconfig ./template/kubeconfig.yaml get all -A
+          else
+            echo "Skipping kubectl test"
+          fi
