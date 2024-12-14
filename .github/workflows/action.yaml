@@ -45,7 +45,7 @@ jobs:
 
       - name: kubectl setup
         uses: tale/kubectl-action@v1
-        run: |
+      - run: |
           if [[ ${{ github.event.inputs.action }} == 'apply' ]]; then
             kubectl --kubeconfig ./template/kubeconfig.yaml get all -A
           else
