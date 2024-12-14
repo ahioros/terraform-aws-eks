@@ -4,7 +4,7 @@ on:
     inputs:
       action:
       required: true
-      default: ''
+      default: 'apply'
       description: 'Select the action'
       type: choice
       options:
