@@ -44,8 +44,8 @@ jobs:
           terraform ${{ github.event.inputs.action }} -var="config_key=config.json" -auto-approve
 
       - name: kubectl setup
-        uses: actions-hub/kubectl@master
-      - run: |
+        uses: tale/kubectl-action@v1
+        run: |
           if [[ ${{ github.event.inputs.action }} == 'apply' ]]; then
             kubectl --kubeconfig ./template/kubeconfig.yaml get all -A
           else
